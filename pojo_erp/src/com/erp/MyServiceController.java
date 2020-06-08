@@ -22,10 +22,9 @@ public class MyServiceController implements Controller {
 	}
 
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	public String process(String cud, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String path = null;
 		Map<String, Object> pMap = null;
-		String cud = req.getParameter("cud");
 		if(cud.equals("myGoWork")) { //insert 출근테이블에 오늘 출근 row추가
 			//출근버튼 눌렀을때
 			pMap = HashMapBuilder.hashMapBuilder(req.getParameterMap());
@@ -61,7 +60,7 @@ public class MyServiceController implements Controller {
 	}
 
 	@Override
-	public ModelAndView process(String work, HttpServletRequest req, HttpServletResponse res)
+	public ModelAndView process(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		ModelAndView mav = new ModelAndView(req,res);
 		if(requestName.equals("inOutManager")) {

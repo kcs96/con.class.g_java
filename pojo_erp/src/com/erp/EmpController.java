@@ -24,12 +24,12 @@ public class EmpController implements Controller {
 	}
 
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	public String process(String cud, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		return null;
 	}
 
 	@Override
-	public ModelAndView process(String work, HttpServletRequest req, HttpServletResponse res)
+	public ModelAndView process(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		ModelAndView mav = null;
 		if(requestName.equals("login")) {
