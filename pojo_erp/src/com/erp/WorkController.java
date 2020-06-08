@@ -20,9 +20,8 @@ public class WorkController implements Controller {
 	}
 
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	public String process(String cud, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String path = null;
-		String cud = req.getParameter("cud");
 		Map<String,Object> pMap = null;
 		if(cud.equals("workAddDocument")) { 
 			//양식 추가 insert here
@@ -89,7 +88,7 @@ public class WorkController implements Controller {
 	}
 
 	@Override
-	public ModelAndView process(String work, HttpServletRequest req, HttpServletResponse res)
+	public ModelAndView process(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		Map<String,Object> pMap = null;
 		if(requestName.equals("webSign")) {

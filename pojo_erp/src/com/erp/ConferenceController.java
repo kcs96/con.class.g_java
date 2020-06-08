@@ -19,10 +19,9 @@ public class ConferenceController implements Controller {
 	}
 
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	public String process(String cud, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Map<String, Object> pMap = null;
-		String cud = req.getParameter("cud");
 		String path =null;
 		if(cud.equals("conAddRoom")) {//insert
 			//회의실예약 insert here
@@ -39,7 +38,7 @@ public class ConferenceController implements Controller {
 	}
 
 	@Override
-		public ModelAndView process(String work, HttpServletRequest req, HttpServletResponse res)
+		public ModelAndView process(HttpServletRequest req, HttpServletResponse res)
 				throws ServletException, IOException {
 			// TODO Auto-generated method stub
 			ModelAndView mav = new ModelAndView();
