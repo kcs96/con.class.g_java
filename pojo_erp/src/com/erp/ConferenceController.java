@@ -48,6 +48,7 @@ public class ConferenceController implements Controller {
 				List<Map<String,Object>> rlist = null;
 				rlist = con.addRes();
 				mv.addObject("addRes", rlist);
+				//주석
 			}
 			return mav;
 		}

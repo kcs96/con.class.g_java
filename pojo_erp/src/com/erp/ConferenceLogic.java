@@ -13,6 +13,7 @@ public class ConferenceLogic {
 		int result=0;
 		return result;
 	}
+	//주석
 
 	public int conDelRoom(Map<String, Object> pMap) {
 		int result = 0;
