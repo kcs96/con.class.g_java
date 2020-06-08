@@ -2,6 +2,7 @@ package com.erp;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ConferenceController implements Controller {
 	String requestName = null;
 	ConferenceLogic con = null;
+	ModelAndView mv = null;
 	public ConferenceController(String requestName) {
 		this.requestName = requestName;
 		con = new ConferenceLogic();
@@ -43,9 +45,9 @@ public class ConferenceController implements Controller {
 			ModelAndView mav = new ModelAndView();
 			if(requestName.equals("addRes")) {
 				//회의실예약 insert here
-				Map<String, Object> pMap = HashMapBuilder.hashMapBuilder(req.getParameterMap());
-				con.conAddRoom(pMap);
-				mav.setViewName("");
+				List<Map<String,Object>> rlist = null;
+				rlist = con.addRes();
+				mv.addObject("addRes", rlist);
 			}
 			return mav;
 		}
