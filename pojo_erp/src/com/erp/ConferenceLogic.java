@@ -7,7 +7,7 @@ public class ConferenceLogic {
 	public ConferenceLogic() {
 		cdao = new ConferenceDao();
 	}
-	
+	//주석
 	public void conAddRoom(Map<String, Object> pMap) {
 		//회의실예약 버튼 이벤트
 	}

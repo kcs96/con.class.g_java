@@ -46,6 +46,7 @@ public class ConferenceController implements Controller {
 				Map<String, Object> pMap = HashMapBuilder.hashMapBuilder(req.getParameterMap());
 				con.conAddRoom(pMap);
 				mav.setViewName("");
+				//주석
 			}
 			return mav;
 		}

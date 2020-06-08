@@ -6,6 +6,7 @@ public class WorkLogic {
 	WorkDao workDao = null;
 	public WorkLogic() {
 		workDao = new WorkDao();
+		//주석
 	}
 	public void webSign(Map<String, Object> pMap) {
 		//전자 결재 탭 이벤트
