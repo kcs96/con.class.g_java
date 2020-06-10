@@ -44,14 +44,14 @@ public class MyServiceLogic {
 	public int myGoWork(Map<String, Object> pMap) {
 		//출근 버튼 이벤트 탭 이벤트
 		int result = 0;
-		result = myServiceDao.myGoWork();
+		result = myServiceDao.myGoWork(pMap);
 		return result;
 		
 	}
 	public int myGoHome(Map<String, Object> pMap) {
 		//퇴근 버튼 이벤트 탭 이벤트
 		int result = 0;
-		result = myServiceDao.myGoWork();
+		result = myServiceDao.myGoHome(pMap);
 		return result;
 		
 	}

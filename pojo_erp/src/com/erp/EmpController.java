@@ -7,10 +7,9 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-
-import com.sun.net.httpserver.HttpsConfigurator;
 
 public class EmpController implements Controller {
 
@@ -31,18 +30,18 @@ public class EmpController implements Controller {
 	@Override
 	public ModelAndView process(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		ModelAndView mav = null;
+		ModelAndView mav = new ModelAndView();
 		if(requestName.equals("login")) {
-			Map<String,String[]> rMap = (Map<String,String[]>)req.getParameterMap();
-			HashMapBuilder hmb = new HashMapBuilder();
-			Map<String,Object> loginMap= hmb.hashMapBuilder(rMap);
-			//rMap =empLogic.login(loginMap);
-			//String empNO =rMap.get("EMPNO");
-			//String empName =rMap.get("EMPNAME");
-			//HttpSession session = req.getSession();
-			//session.setattribute("empno",empNo);
-			//session.setattribute("empName",empName);
-			//path="xxx:xxx.jsp"
+			Map<String,String[]> pMap = (Map<String,String[]>)req.getParameterMap();
+			Map<String,Object> loginMap= HashMapBuilder.hashMapBuilder(pMap);
+			Map<String,Object> rMap = new HashMap<>();
+			rMap =empLogic.login(loginMap);
+			String empno =rMap.get("EMPNO").toString();
+			String ename =rMap.get("E_NAME").toString();
+			HttpSession session = req.getSession();
+			session.setAttribute("empno",empno);
+			session.setAttribute("ename",ename);
+			mav.setViewName("");
 		}
 		return mav;
 	}
