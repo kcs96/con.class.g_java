@@ -1,5 +1,7 @@
 package com.erp;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class WorkLogic {
@@ -7,75 +9,122 @@ public class WorkLogic {
 	public WorkLogic() {
 		workDao = new WorkDao();
 	}
-	public void webSign(Map<String, Object> pMap) {
-		//전자 결재 탭 이벤트
+	public List<Map<String, Object>> smySign(Map<String, Object> pMap) {
+		//내결재함(보낸 결재)
+		List<Map<String,Object>> slist = new ArrayList<Map<String,Object>>();
+		slist = workDao.smySign(pMap);
+		return slist;
 	}
-	public void mySign(Map<String, Object> pMap) {
-		//내결재함 탭 이벤트
+	public List<Map<String, Object>> rmySign(Map<String, Object> rMap) {
+		//내결재함(받은 결재)
+		List<Map<String,Object>> rlist = new ArrayList();
+		rlist = workDao.rmySign(rMap);
+		return rlist;
 	}
-	public void signForm(Map<String,Object> pMap) {
+	public List<Map<String,Object>> signForm(Map<String,Object> pMap) {
 		//결재양식 탭 이벤트
+		List<Map<String,Object>> rlist = null;
+		rlist = workDao.signForm(pMap);
+		return rlist;
 	}
-	public void signSend(Map<String, Object> pMap) {
+	public List<Map<String,Object>> signSend(Map<String, Object> pMap) {
 		//결재신청 탭 이벤트
+		List<Map<String,Object>> rlist = null;
+		rlist = workDao.signSend(pMap);
+		return rlist;
 	}
-	public void empManageMent(Map<String,Object> pMap) {
-		//인사 탭 이벤트
+	public List<Map<String, Object>> empList(Map<String, Object> pMap) {
+		//사원조회 탭
+		List<Map<String,Object>> rlist = null;
+		rlist = workDao.empList(pMap);
+		return rlist;
 	}
-	public void deptSchedule(Map<String,Object> pMap) {
+	public List<Map<String, Object>> empRetire(Map<String, Object> pMap) {
+		//퇴직사원조회 탭 이벤트
+		List<Map<String,Object>> rlist = null;
+		rlist = workDao.empRetire(pMap);
+		return rlist;
+	}
+	public List<Map<String, Object>> branchList(Map<String, Object> pMap) {
+		//지사관리
+		List<Map<String,Object>> rlist = null;
+		rlist = workDao.branchList(pMap);
+		return rlist;
+	}
+	public List deptSchedule(Map<String,Object> pMap) {
 		//부서일정 탭 이벤트
+		List<Map<String,Object>> rlist = null;
+		rlist = workDao.deptSchedule(pMap);
+		return rlist;
 		
 	}
-	public void workAddDocument(Map<String, Object> pMap) {
+	public List<Map<String, Object>> empSend(Map<String, Object> pMap) {
+		///파견사원 조회
+		List<Map<String,Object>> rlist = null;
+		rlist = workDao.empSend(pMap);
+		return rlist;
+	}
+
+	public int workAddDocument(Map<String, Object> pMap) {
 		//결재 양식 추가 탭 이벤트
-		
+		int result = 0;
+		return result ;
 	}
-	public void workDelDocument(Map<String, Object> pMap) {
+	public int workDelDocument(Map<String, Object> pMap) {
 		// 결재양식 삭제 탭 이벤트
-		
+		int result = 0;
+		return result ;
 	}
-	public void workWrite(Map<String, Object> pMap) {
+	public int workWrite(Map<String, Object> pMap) {
 		//결재  작성 탭 이벤트
-		
+		int result = 0;
+		return result;
 	}
-	public void workAgree(Map<String, Object> pMap) {
+	public int workAgree(Map<String, Object> pMap) {
 		//결재 승인 탭 이벤트
-		
+		int result = 0;
+		return result;
 	}
-	public void workDeny(Map<String, Object> pMap) {
+	public int workDeny(Map<String, Object> pMap) {
 		//결재 기각 탭 이벤트
-		
+		int result = 0;
+		return result;
 	}
-	public void workAddEmp(Map<String, Object> pMap) {
+	public int workAddEmp(Map<String, Object> pMap) {
 		//사원등록 탭 이벤트
-		
+		int result = 0;
+		return result;
 	}
-	public void workUpdEmp(Map<String, Object> pMap) {
+	public int workUpdEmp(Map<String, Object> pMap) {
 		//사원수정 탭 이벤트
-		
+		int result = 0;
+		return result;
 	}
-	public void workAddOut(Map<String, Object> pMap) {
+	public int workAddOut(Map<String, Object> pMap) {
 		//파견등록 탭 이벤트
-		
+		int result = 0;
+		return result;
 	}
-	public void workDelEmp(Map<String, Object> pMap) {
+	public int workDelEmp(Map<String, Object> pMap) {
 		//사원삭제 탭 이벤트
-		
+		int result = 0;
+		return result;
 	}
-	public void workAddSchedule(Map<String, Object> pMap) {
+	public int workAddSchedule(Map<String, Object> pMap) {
 		//부서일정 추가 탭 이벤트
-		
+		int result = 0;
+		return result;
 	}
-	public void workUpdSchedule(Map<String, Object> pMap) {
+	public int workUpdSchedule(Map<String, Object> pMap) {
 		//부서일정 수정 탭 이벤트
-		
+		int result = 0;
+		return result;
 	}
-	public void workDelSchedule(Map<String, Object> pMap) {
+	public int workDelSchedule(Map<String, Object> pMap) {
 		//부서일정 삭제 탭 이벤트
-		
+		int result = 0;
+		return result;
 	}
-	
-	
 	
 
 	

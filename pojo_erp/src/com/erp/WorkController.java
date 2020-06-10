@@ -2,11 +2,14 @@ package com.erp;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 public class WorkController implements Controller {
 	
@@ -22,16 +25,16 @@ public class WorkController implements Controller {
 	@Override
 	public String process(String cud, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String path = null;
+		int result = 0;
 		Map<String,Object> pMap = null;
 		if(cud.equals("workAddDocument")) { 
-			//양식 추가 insert here
 		    pMap = HashMapBuilder.hashMapBuilder(req.getParameterMap());
-			workLogic.workAddDocument(pMap);
+		    result = workLogic.workAddDocument(pMap);
 			path = "redirect:xxx.jsp";
 		}else if(cud.equals("workDelDocument")) { 
 			//양식 삭제 insert here
 		    pMap = HashMapBuilder.hashMapBuilder(req.getParameterMap());
-			workLogic.workDelDocument(pMap);
+			result = workLogic.workDelDocument(pMap);
 			path = "redirect:xxx.jsp";
 		}else if(cud.equals("workWrite")) { 
 			//결재 작성 insert here
@@ -91,32 +94,72 @@ public class WorkController implements Controller {
 	public ModelAndView process(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		Map<String,Object> pMap = null;
-		if(requestName.equals("webSign")) {
+		Map<String,Object> rMap = null;
+		ModelAndView mav = new ModelAndView(req,res);
+		HttpSession session = req.getSession();
+		String empno =  (String)session.getAttribute("empno");
+		if(requestName.equals("mySign")) {
 			//전자결재 insert here
-		    pMap = HashMapBuilder.hashMapBuilder(req.getParameterMap());
-			workLogic.webSign(pMap);
-		}else if(requestName.equals("mySign")) {
-			//내결재함 insert here
-			pMap = HashMapBuilder.hashMapBuilder(req.getParameterMap());
-			workLogic.mySign(pMap);
+			List<Map<String,Object>> slist = null;
+		    pMap = new HashMap();
+		    pMap.put("pname", empno);
+		    slist = workLogic.smySign(pMap);
+		    mav.addObject("smySignList", slist);
+		    
+		    List<Map<String,Object>> rlist = null;
+		    rMap = new HashMap();
+		    rMap.put("empno",empno);
+			rlist = workLogic.rmySign(rMap);
+			mav.addObject("rmySignList", rlist);
+			mav.setViewName("");
 		}else if(requestName.equals("signForm")) {
 			//결재양식 insert here
-		    pMap =  HashMapBuilder.hashMapBuilder(req.getParameterMap());
-			workLogic.signForm(pMap);
+			List<Map<String,Object>> rlist = null;
+		    rlist = workLogic.signForm(pMap); //Map or List 그냥 리스트함.
+		    mav.addObject("signFormList",rlist);
+		    mav.setViewName("");
 		}else if(requestName.equals("signSend")) {
 			//결재신청 insert here
-			pMap = HashMapBuilder.hashMapBuilder(req.getParameterMap());
-			workLogic.signSend(pMap);
-		}else if(requestName.equals("empManageMent")) {
+			List<Map<String,Object>> rlist = null;
+			pMap = new HashMap();
+			pMap.put("empno", empno);
+			rlist = workLogic.signSend(pMap);
+			mav.addObject("sigSendList",rlist);
+			mav.setViewName("");
+		}else if(requestName.equals("humanResource")) {
 			//인사 insert here
-			pMap = HashMapBuilder.hashMapBuilder(req.getParameterMap());
-			workLogic.empManageMent(pMap);
-		}else if(requestName.equals("deptSchedule")) {
-			//부서일정 insert here
-			pMap = HashMapBuilder.hashMapBuilder(req.getParameterMap());
-			workLogic.deptSchedule(pMap);
+		}else if(requestName.equals("empList")) {
+			//사원조회 insert here
+			List<Map<String,Object>> rlist = null;
+			rlist = workLogic.empList(pMap);
+			mav.addObject("empList", rlist);
+			mav.setViewName("");
+		}else if(requestName.equals("empRetire")) {
+			List<Map<String,Object>> rlist = null;
+			rlist = workLogic.empRetire(pMap);
+			mav.addObject("empRetireList", rlist);
+			mav.setViewName("");
+		}else if(requestName.equals("empSend")) {
+			List<Map<String,Object>> rlist = null;
+			rlist = workLogic.empSend(pMap);
+			mav.addObject("empSendList", rlist);
+			mav.setViewName("");
+		}else if(requestName.equals("branchList")) {
+			List<Map<String,Object>> rlist = null;
+			rlist = workLogic.branchList(pMap);
+			mav.addObject("branchList", rlist);
+			mav.setViewName("");
 		}
-		return null;
+		else if(requestName.equals("deptSchedule")) {
+			//부서일정 insert here
+			List<Map<String,Object>> rlist = null;
+			pMap = new HashMap();
+			pMap.put("empno",empno);
+			rlist = workLogic.deptSchedule(pMap);
+			mav.addObject("deptScheduleList", rlist);
+			mav.setViewName("");
+		}
+		return mav;
 	}
 
 }

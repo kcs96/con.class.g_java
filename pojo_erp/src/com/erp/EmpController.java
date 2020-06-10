@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.sun.net.httpserver.HttpsConfigurator;
-
 public class EmpController implements Controller {
 
 	String requestName = null;
