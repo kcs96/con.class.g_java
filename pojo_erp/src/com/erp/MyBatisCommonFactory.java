@@ -14,7 +14,6 @@ public class MyBatisCommonFactory {
 			String resource = "orm/mybatis/Configuration.xml";
 			Reader reader = Resources.getResourceAsReader(resource);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader,"development");
-			
 		} catch (FileNotFoundException fe) {
 			fe.toString();
 		}catch(Exception e) {
