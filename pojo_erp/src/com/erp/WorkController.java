@@ -19,9 +19,7 @@ public class WorkController implements Controller {
 		//requestName을 파라미터로 받아서 전역변수로 넘겨줌.
 		this.requestName = requestName;
 		workLogic = new WorkLogic();
-		
 	}
-
 	@Override
 	public String process(String cud, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String path = null;
@@ -135,16 +133,19 @@ public class WorkController implements Controller {
 			mav.addObject("empList", rlist);
 			mav.setViewName("");
 		}else if(requestName.equals("empRetire")) {
+			//퇴직사원조회 insert here
 			List<Map<String,Object>> rlist = null;
 			rlist = workLogic.empRetire(pMap);
 			mav.addObject("empRetireList", rlist);
 			mav.setViewName("");
 		}else if(requestName.equals("empSend")) {
+			//파견사원조회 insert here
 			List<Map<String,Object>> rlist = null;
 			rlist = workLogic.empSend(pMap);
 			mav.addObject("empSendList", rlist);
 			mav.setViewName("");
 		}else if(requestName.equals("branchList")) {
+			//지사관리조회 insert here
 			List<Map<String,Object>> rlist = null;
 			rlist = workLogic.branchList(pMap);
 			mav.addObject("branchList", rlist);
